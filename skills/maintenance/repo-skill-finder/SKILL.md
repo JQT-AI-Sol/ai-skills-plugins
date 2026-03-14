@@ -1,13 +1,15 @@
 ---
 name: repo-skill-finder
 description: >
-  社内リポジトリ（JQT-AI-Sol/ai-skills-plugins）からスキルを検索・インストールするスキル。
-  以下の場合に使用：
-  (1) 「社内スキルを探したい」「リポジトリからスキルを検索」「repo find」
-  (2) 「〇〇用のスキルある？」「〇〇をやりたいんだけどスキルある？」
-  (3) 「スキルをインストールしたい」「スキルを追加」
-  (4) 「スキル一覧を見たい」「どんなスキルがある？」
-  skills.sh / npx skills でのWeb検索にはfind-skillsを使うこと。
+  JQIT社内リポジトリ（JQT-AI-Sol/ai-skills-plugins）からスキルを検索・インストールするスキル。
+  以下の場合にのみ使用（「社内」「JQIT」「リポジトリ」等の明示的な指定が必要）：
+  (1) 「社内スキルを探して」「JQITのスキルを探して」「リポジトリからスキルを検索」
+  (2) 「社内に〇〇用のスキルある？」「JQITの〇〇スキル」
+  (3) 「社内スキル一覧」「リポジトリのスキル一覧」
+  (4) 「repo find」「repo-skill-finder」
+  このスキルを使わないケース：
+  - 「スキルを探して」「〇〇用のスキルある？」など社内を指定しない汎用的な検索 → find-skills を使う
+  - skills.sh / npx skills でのWeb検索 → find-skills を使う
 user-invocable: true
 allowed-tools:
   - Bash
