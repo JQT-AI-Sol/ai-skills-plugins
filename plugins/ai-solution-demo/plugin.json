@@ -1,0 +1,28 @@
+{
+  "name": "ai-solution-demo",
+  "version": "1.0.0",
+  "description": "顧客DX案件のAIソリューションデモを一気通貫で構築するプラグイン。ヒアリングメモから要件定義→設計→UI/UX→実装→テスト→デモ動画→提案書まで、フェーズゲート付きで再現可能に実行する。",
+  "skills": [
+    "skills/ai-solution-demo",
+    "skills/demo-recorder",
+    "skills/jqit-proposal",
+    "skills/jqit-estimate",
+    "skills/manual-generator",
+    "skills/image-generator"
+  ],
+  "externalDependencies": {
+    "required": [
+      "ui-ux-pro-max",
+      "pom-generator"
+    ],
+    "optional": [
+      "brainstorming",
+      "wireframe-prototyping",
+      "e2e-testing",
+      "dev-session"
+    ],
+    "plugins": [
+      "document-skills (doc-coauthoring, frontend-design, pptx, xlsx)"
+    ]
+  }
+}
