@@ -70,6 +70,7 @@ allowed-tools:
 | maintenance | systematic-debugging | 4フェーズデバッグ法（根本原因特定 → 修正） |
 | maintenance | find-skills | Web上のスキル探索・インストール（skills.sh） |
 | maintenance | repo-skill-finder | 社内リポジトリからスキル検索・インストール（このスキル） |
+| maintenance | skill-uploader | スキルをリポジトリにアップロード・カタログ自動更新 |
 
 ## ワークフロー
 
