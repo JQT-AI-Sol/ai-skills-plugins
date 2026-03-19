@@ -55,7 +55,7 @@ allowed-tools:
 | backend | python-backend | FastAPI/SQLAlchemy/JWT 開発ガイド |
 | backend | fastapi-async-patterns | FastAPI 非同期パターン・並行処理 |
 | database | supabase-postgres-best-practices | Postgres パフォーマンス最適化・RLS・スキーマ設計 |
-| testing | tdd | TDD統合（変更分析 → テスト種別判定 → RED/GREEN/REFACTOR） |
+| testing | tdd | TDD統合（変更分析 → コードレビュー → テスト種別判定 → RED/GREEN/REFACTOR） |
 | testing | pom-generator | Playwright Page Object Model 生成・更新 |
 | devops | cloudflare-deploy | Cloudflare Workers/Pages デプロイ・wrangler CLI |
 | ai-api | openai-api | OpenAI API（Chat/Vision/Whisper/DALL-E）実装ガイド |
@@ -64,6 +64,7 @@ allowed-tools:
 | content | qiita-publish | Qiita CLI 記事投稿 |
 | business | jqit-proposal | JQIT提案書 PPTX 自動生成（8レイアウト + AI画像） |
 | business | jqit-estimate | JQIT見積書 XLSX 自動生成 |
+| business | ai-solution-demo | AIソリューションデモ一気通貫構築（要件→実装→テスト→提案書） |
 | business | legal-review | 契約書リーガルチェック・DOCX赤入れ |
 | media | demo-recorder | Playwright でWebアプリ操作録画 → MP4 |
 | maintenance | skill-creator | スキルの新規作成ガイド（品質チェックリスト付き） |
@@ -143,7 +144,8 @@ cp -r /tmp/ai-skills-repo/skills/<category>/<skill-name> ~/.claude/skills/
 | review-vercel-frontend | ui-ux-pro-max, vercel-react-best-practices, web-design-guidelines |
 | review-frontend | ui-ux-pro-max, web-design-guidelines |
 | review-python-backend | python-backend, fastapi-async-patterns |
-| tdd | systematic-debugging（テスト失敗時に連携） |
+| tdd | decompose, review-vercel-frontend, review-python-backend, supabase-postgres-best-practices, systematic-debugging |
+| ai-solution-demo | tdd, demo-recorder, jqit-proposal, jqit-estimate |
 
 ## マッチしない場合
 
