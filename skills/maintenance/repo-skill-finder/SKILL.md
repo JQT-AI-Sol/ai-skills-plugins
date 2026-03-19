@@ -64,7 +64,6 @@ allowed-tools:
 | content | qiita-publish | Qiita CLI 記事投稿 |
 | business | jqit-proposal | JQIT提案書 PPTX 自動生成（8レイアウト + AI画像） |
 | business | jqit-estimate | JQIT見積書 XLSX 自動生成 |
-| business | ai-solution-demo | AIソリューションデモ一気通貫構築（要件→実装→テスト→提案書） |
 | business | legal-review | 契約書リーガルチェック・DOCX赤入れ |
 | media | demo-recorder | Playwright でWebアプリ操作録画 → MP4 |
 | maintenance | skill-creator | スキルの新規作成ガイド（品質チェックリスト付き） |
@@ -74,6 +73,14 @@ allowed-tools:
 | maintenance | find-skills | Web上のスキル探索・インストール（skills.sh） |
 | maintenance | repo-skill-finder | 社内リポジトリからスキル検索・インストール（このスキル） |
 | maintenance | skill-uploader | スキルをリポジトリにアップロード・カタログ自動更新 |
+
+## プラグインカタログ
+
+プラグインは複数スキルをバンドルしたパッケージ。`plugins/` 配下に配置。
+
+| プラグイン | 説明 | 含まれるスキル |
+|-----------|------|--------------|
+| ai-solution-demo | AIソリューションデモ一気通貫構築（要件→実装→テスト→提案書） | ai-solution-demo, demo-recorder, image-generator, jqit-estimate, jqit-proposal, manual-generator |
 
 ## ワークフロー
 
@@ -145,7 +152,6 @@ cp -r /tmp/ai-skills-repo/skills/<category>/<skill-name> ~/.claude/skills/
 | review-frontend | ui-ux-pro-max, web-design-guidelines |
 | review-python-backend | python-backend, fastapi-async-patterns |
 | tdd | decompose, review-vercel-frontend, review-python-backend, supabase-postgres-best-practices, systematic-debugging |
-| ai-solution-demo | tdd, demo-recorder, jqit-proposal, jqit-estimate |
 
 ## マッチしない場合
 

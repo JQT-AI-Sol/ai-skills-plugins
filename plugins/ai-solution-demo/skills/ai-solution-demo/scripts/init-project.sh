@@ -1,6 +1,8 @@
 #!/bin/bash
 # init-project.sh — AI Solution Demo プロジェクト初期化スクリプト
 # Usage: ./init-project.sh <project-name> [base-dir]
+#
+# 標準ドキュメント構成（番号付き8カテゴリ）でディレクトリを生成する。
 
 set -euo pipefail
 
@@ -19,15 +21,26 @@ fi
 
 echo "=== プロジェクト '${PROJECT_NAME}' を初期化します ==="
 
-# ディレクトリ構造を作成
+# 標準ドキュメント構成を作成
+mkdir -p "${PROJECT_DIR}/docs/01-requirements"
+mkdir -p "${PROJECT_DIR}/docs/02-design/wireframes"
+mkdir -p "${PROJECT_DIR}/docs/03-project"
+mkdir -p "${PROJECT_DIR}/docs/04-testing"
+mkdir -p "${PROJECT_DIR}/docs/05-deliverables/estimates"
+mkdir -p "${PROJECT_DIR}/docs/05-deliverables/proposal"
+mkdir -p "${PROJECT_DIR}/docs/06-demo/videos"
+mkdir -p "${PROJECT_DIR}/docs/07-plans"
+mkdir -p "${PROJECT_DIR}/docs/08-qa-videos"
 mkdir -p "${PROJECT_DIR}/docs/reviews"
-mkdir -p "${PROJECT_DIR}/design"
-mkdir -p "${PROJECT_DIR}/wireframes"
+
+# ソースコード・テスト
 mkdir -p "${PROJECT_DIR}/src"
 mkdir -p "${PROJECT_DIR}/tests/e2e"
-mkdir -p "${PROJECT_DIR}/tests/pom"
-mkdir -p "${PROJECT_DIR}/demo"
-mkdir -p "${PROJECT_DIR}/proposal"
+mkdir -p "${PROJECT_DIR}/tests/unit"
+mkdir -p "${PROJECT_DIR}/tests/api"
+mkdir -p "${PROJECT_DIR}/tests/page-objects"
+mkdir -p "${PROJECT_DIR}/tests/manifests"
+mkdir -p "${PROJECT_DIR}/tests/helpers"
 
 # WORKFLOW.md を生成
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
@@ -36,7 +49,6 @@ TEMPLATE="${SKILL_DIR}/assets/workflow-state-template.md"
 TODAY="$(date '+%Y-%m-%d')"
 
 if [ -f "$TEMPLATE" ]; then
-  # プロジェクト名の sed メタ文字をエスケープ
   SAFE_NAME=$(printf '%s\n' "$PROJECT_NAME" | sed 's|[/&\\]|\\&|g')
   sed "s|{{project_name}}|${SAFE_NAME}|g; s|{{date}}|${TODAY}|g" \
     "$TEMPLATE" | \
@@ -78,7 +90,14 @@ fi
 echo ""
 echo "=== 初期化完了 ==="
 echo "ディレクトリ構造:"
-find "${PROJECT_DIR}" -type d | sort | sed "s|${BASE_DIR}/||" | head -20
+find "${PROJECT_DIR}" -type d | sort | sed "s|${BASE_DIR}/||" | head -30
+echo ""
+echo "ドキュメント配置ルール:"
+echo "  docs/01-requirements/  → requirements.md"
+echo "  docs/02-design/        → design.md, api-reference.md, db-schema.md, screen-flow.md"
+echo "  docs/02-design/wireframes/ → ワイヤーフレーム"
+echo "  docs/03-project/       → project-plan.md, risk-register.md, branching-strategy.md"
+echo "  docs/05-deliverables/  → 見積書, 提案書, テンプレート"
 echo ""
 echo "次のステップ:"
 echo "  1. ${PROJECT_DIR}/docs/memo.md にヒアリングメモを配置"

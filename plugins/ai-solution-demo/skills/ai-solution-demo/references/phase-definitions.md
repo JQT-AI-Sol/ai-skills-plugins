@@ -32,7 +32,7 @@
 4. 要件IDを `F-001`, `F-002`, ... で採番
 
 **成果物**:
-- `docs/requirement.md`
+- `docs/01-requirements/requirements.md`
 
 **テンプレート**: [document-templates.md](document-templates.md) の要件定義テンプレートを使用
 
@@ -47,19 +47,20 @@
 
 **目的**: 要件定義に基づく技術設計
 
-**入力**: `docs/requirement.md`
+**入力**: `docs/01-requirements/requirements.md`
 
 **手順**:
-1. requirement.mdの要件を技術的に分解
+1. requirements.mdの要件を技術的に分解
 2. `doc-coauthoring` スキルで設計ドキュメントを共同作成
 3. DB設計はSupabaseベストプラクティスを参照
 4. API設計はRESTful原則に準拠
 5. 設計IDを `S-001`, `S-002`, ... で採番し、要件IDと紐付け
 
 **成果物**:
-- `design/screen-design.md` — 画面設計（画面一覧、遷移図）
-- `design/db-schema.md` — DB設計（テーブル定義、ER図記述）
-- `design/api-design.md` — API設計（エンドポイント一覧、リクエスト/レスポンス）
+- `docs/02-design/design.md` — システム設計書
+- `docs/02-design/screen-flow.md` — 画面設計（画面一覧、遷移図）
+- `docs/02-design/db-schema.md` — DB設計（テーブル定義、ER図記述）
+- `docs/02-design/api-reference.md` — API設計（エンドポイント一覧、リクエスト/レスポンス）
 
 **完了条件**:
 - 全要件(F-xx)に対応する設計項目(S-xx)が存在する
@@ -72,7 +73,7 @@
 
 **目的**: Phase 1-2の成果物間の整合性を検証するゲートフェーズ
 
-**入力**: `docs/memo.md`, `docs/requirement.md`, `design/*.md`
+**入力**: `docs/memo.md`, `docs/01-requirements/requirements.md`, `docs/02-design/*.md`
 
 **手順**:
 1. `scripts/consistency-check.py` で自動チェックを実行
@@ -95,7 +96,7 @@
 
 **目的**: 画面設計に基づくワイヤーフレームとデザインシステムの作成
 
-**入力**: `design/screen-design.md`, `docs/requirement.md`
+**入力**: `docs/02-design/screen-flow.md`, `docs/01-requirements/requirements.md`
 
 **手順**:
 1. `wireframe-prototyping` スキルで画面ごとのワイヤーフレームを作成
@@ -104,8 +105,8 @@
 4. アクション可能IDを `A-001`, `A-002`, ... で採番し、設計IDと紐付け
 
 **成果物**:
-- `wireframes/` — 各画面のワイヤーフレーム（HTML/画像）
-- `design/design-system.md` — デザインシステム定義
+- `docs/02-design/wireframes/` — 各画面のワイヤーフレーム（HTML/画像）
+- `docs/02-design/design-system.md` — デザインシステム定義
 
 **完了条件**:
 - 全画面のワイヤーフレームが作成されている
@@ -118,7 +119,7 @@
 
 **目的**: Next.js + Supabaseでデモアプリを構築
 
-**入力**: `design/*.md`, `wireframes/`, `docs/requirement.md`
+**入力**: `docs/02-design/*.md`, `docs/02-design/wireframes/`, `docs/01-requirements/requirements.md`
 
 **手順**:
 1. `feature-dev` スキルでNext.jsプロジェクトを初期化
@@ -142,7 +143,7 @@
 
 **目的**: E2Eテストとコードレビュー
 
-**入力**: `src/`, `design/*.md`
+**入力**: `src/`, `docs/02-design/*.md`
 
 **手順**:
 1. `pom-generator` スキルでPage Object Modelを生成
