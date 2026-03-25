@@ -315,31 +315,43 @@ try {
 
 ### GPT-5 / GPT-5-mini / GPT-5-nano / GPT-5.2
 
+GPT-5 series are **thinking models** — they use internal reasoning tokens before generating output. Regular `chat.completions.create` may return empty content. Use `beta.chat.completions.parse` with `response_format` (Structured Outputs) for reliable results.
+
 | Parameter | Support |
 |-----------|---------|
 | `max_tokens` | **NOT supported**. Use `max_completion_tokens` instead |
 | `temperature` | **NOT supported**. Only default value (1) is allowed. Do NOT pass this parameter |
 | `top_p` | **NOT supported**. Do NOT pass this parameter |
-| `response_format` | Supported (`{"type": "json_object"}`) |
+| `reasoning_effort` | Supported: `"low"`, `"medium"`, `"high"` (default). Controls thinking token budget |
+| `response_format` | Supported (`{"type": "json_object"}` or Pydantic model for Structured Outputs) |
 | `tools` | Supported |
 | `stream` | Supported |
 
+**Token behavior:** `max_completion_tokens` includes both reasoning (thinking) tokens and output tokens. With `reasoning_effort="low"`, the model uses fewer thinking tokens. For simple generation tasks, set `reasoning_effort="low"` and give enough `max_completion_tokens` (e.g., 2000) to avoid `LengthFinishReasonError`.
+
 ```python
-# WRONG - will raise 400 error
+from pydantic import BaseModel
+
+class Result(BaseModel):
+    text: str
+
+# WRONG - may return empty content
 response = client.chat.completions.create(
-    model="gpt-5-mini",
+    model="gpt-5-nano",
     messages=[...],
     temperature=0.7,       # ERROR: unsupported
     max_tokens=1000,       # ERROR: unsupported
 )
 
-# CORRECT
-response = client.chat.completions.create(
-    model="gpt-5-mini",
+# CORRECT - use Structured Outputs for reliable results
+response = client.beta.chat.completions.parse(
+    model="gpt-5-nano",
     messages=[...],
-    max_completion_tokens=1000,  # Use this instead of max_tokens
-    # Do NOT pass temperature or top_p
+    response_format=Result,
+    max_completion_tokens=2000,  # Must be large enough for reasoning + output
+    reasoning_effort="low",     # "low" | "medium" | "high"
 )
+result = response.choices[0].message.parsed
 ```
 
 ### Reasoning Models (o1 / o3 / o3-mini / o4-mini)

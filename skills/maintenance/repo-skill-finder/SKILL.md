@@ -1,15 +1,13 @@
 ---
 name: repo-skill-finder
 description: >
-  JQIT社内リポジトリ（JQT-AI-Sol/ai-skills-plugins）からスキルを検索・インストールするスキル。
-  以下の場合にのみ使用（「社内」「JQIT」「リポジトリ」等の明示的な指定が必要）：
-  (1) 「社内スキルを探して」「JQITのスキルを探して」「リポジトリからスキルを検索」
-  (2) 「社内に〇〇用のスキルある？」「JQITの〇〇スキル」
-  (3) 「社内スキル一覧」「リポジトリのスキル一覧」
-  (4) 「repo find」「repo-skill-finder」
-  このスキルを使わないケース：
-  - 「スキルを探して」「〇〇用のスキルある？」など社内を指定しない汎用的な検索 → find-skills を使う
-  - skills.sh / npx skills でのWeb検索 → find-skills を使う
+  社内リポジトリ（JQT-AI-Sol/ai-skills-plugins）からスキルを検索・インストールするスキル。
+  以下の場合に使用：
+  (1) 「社内スキルを探したい」「リポジトリからスキルを検索」「repo find」
+  (2) 「〇〇用のスキルある？」「〇〇をやりたいんだけどスキルある？」
+  (3) 「スキルをインストールしたい」「スキルを追加」
+  (4) 「スキル一覧を見たい」「どんなスキルがある？」
+  skills.sh / npx skills でのWeb検索にはfind-skillsを使うこと。
 user-invocable: true
 allowed-tools:
   - Bash
@@ -55,13 +53,19 @@ allowed-tools:
 | backend | python-backend | FastAPI/SQLAlchemy/JWT 開発ガイド |
 | backend | fastapi-async-patterns | FastAPI 非同期パターン・並行処理 |
 | database | supabase-postgres-best-practices | Postgres パフォーマンス最適化・RLS・スキーマ設計 |
-| testing | tdd | TDD統合（変更分析 → コードレビュー → テスト種別判定 → RED/GREEN/REFACTOR） |
+| testing | tdd | TDD統合（変更分析 → テスト種別判定 → RED/GREEN/REFACTOR） |
+| testing | tdd-code-review | TDDサイクル前のコードレビュー＆構造チェック（Gate 3） |
+| testing | tdd-test-writer | TDDのRED→GREENフェーズ（Gate 4-5） |
+| testing | tdd-refactor | TDDのREFACTORフェーズ（Gate 6） |
+| testing | tdd-ui-review | TDDのUI/UXレビュー＆改善ループ（Gate 7） |
+| testing | tdd-doc-sync | TDDサイクル後のドキュメント同期（Gate 9） |
 | testing | pom-generator | Playwright Page Object Model 生成・更新 |
 | devops | cloudflare-deploy | Cloudflare Workers/Pages デプロイ・wrangler CLI |
 | ai-api | openai-api | OpenAI API（Chat/Vision/Whisper/DALL-E）実装ガイド |
 | ai-api | gemini-api | Google Gemini API モデル選択・実装ガイド |
 | content | tech-blog-writer | 技術ブログの対話的執筆支援 |
 | content | qiita-publish | Qiita CLI 記事投稿 |
+| content | doc-condenser | AI生成ドキュメントの冗長性・AI臭さを除去し簡潔化 |
 | business | jqit-proposal | JQIT提案書 PPTX 自動生成（8レイアウト + AI画像） |
 | business | jqit-estimate | JQIT見積書 XLSX 自動生成 |
 | business | legal-review | 契約書リーガルチェック・DOCX赤入れ |
@@ -73,14 +77,6 @@ allowed-tools:
 | maintenance | find-skills | Web上のスキル探索・インストール（skills.sh） |
 | maintenance | repo-skill-finder | 社内リポジトリからスキル検索・インストール（このスキル） |
 | maintenance | skill-uploader | スキルをリポジトリにアップロード・カタログ自動更新 |
-
-## プラグインカタログ
-
-プラグインは複数スキルをバンドルしたパッケージ。`plugins/` 配下に配置。
-
-| プラグイン | 説明 | 含まれるスキル |
-|-----------|------|--------------|
-| ai-solution-demo | AIソリューションデモ一気通貫構築（要件→実装→テスト→提案書） | ai-solution-demo, demo-recorder, image-generator, jqit-estimate, jqit-proposal, manual-generator |
 
 ## ワークフロー
 
@@ -151,7 +147,7 @@ cp -r /tmp/ai-skills-repo/skills/<category>/<skill-name> ~/.claude/skills/
 | review-vercel-frontend | ui-ux-pro-max, vercel-react-best-practices, web-design-guidelines |
 | review-frontend | ui-ux-pro-max, web-design-guidelines |
 | review-python-backend | python-backend, fastapi-async-patterns |
-| tdd | decompose, review-vercel-frontend, review-python-backend, supabase-postgres-best-practices, systematic-debugging |
+| tdd | tdd-code-review, tdd-test-writer, tdd-refactor, tdd-ui-review, tdd-doc-sync, systematic-debugging |
 
 ## マッチしない場合
 

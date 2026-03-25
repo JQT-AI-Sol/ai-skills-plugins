@@ -1,6 +1,6 @@
 ---
 name: supabase-postgres-best-practices
-description: Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or database configurations.
+description: Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or database configurations. Also use when auditing RLS policies, checking for missing RLS on tables, or reviewing Supabase Security Advisor findings.
 license: MIT
 metadata:
   author: supabase
@@ -23,6 +23,9 @@ Reference these guidelines when:
 - Configuring connection pooling or scaling
 - Optimizing for Postgres-specific features
 - Working with Row-Level Security (RLS)
+- **Auditing RLS coverage** (missing RLS, overly permissive policies)
+- **Responding to Supabase Security Advisor** findings
+- Adding new tables (ensure RLS is enabled before merge)
 
 ## Rule Categories by Priority
 
@@ -37,6 +40,17 @@ Reference these guidelines when:
 | 7 | Monitoring & Diagnostics | LOW-MEDIUM | `monitor-` |
 | 8 | Advanced Features | LOW | `advanced-` |
 
+## Security & RLS Rules (6 rules)
+
+| Rule | Impact | File | What it catches |
+|------|--------|------|-----------------|
+| RLS Basics | CRITICAL | `security-rls-basics.md` | テーブルにRLSが未有効 |
+| RLS Audit | CRITICAL | `security-rls-audit.md` | RLS未設定テーブルの一括発見（`pg_tables`クエリ） |
+| RLS Overly Permissive | CRITICAL | `security-rls-overly-permissive.md` | `USING (true)` 等の過剰許可ポリシー検出 |
+| RLS Indirect Tenant | HIGH | `security-rls-indirect-tenant.md` | `company_id` 無しテーブルのJOIN型テナント分離 |
+| RLS Performance | HIGH | `security-rls-performance.md` | `(SELECT ...)` ラップによるRLS高速化 |
+| Privileges | MEDIUM | `security-privileges.md` | 最小権限の原則 |
+
 ## How to Use
 
 Read individual rule files for detailed explanations and SQL examples:
@@ -44,7 +58,7 @@ Read individual rule files for detailed explanations and SQL examples:
 ```
 references/query-missing-indexes.md
 references/schema-partial-indexes.md
-references/_sections.md
+references/security-rls-audit.md
 ```
 
 Each rule file contains:

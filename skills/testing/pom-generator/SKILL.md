@@ -1,6 +1,11 @@
 ---
 name: pom-generator
-description: Playwright Page Object Model (POM) の新規作成・既存POM更新スキル。プロジェクトのソースコードとPlaywright MCPブラウザスナップショットを組み合わせて、ベストプラクティスに準拠したPOMクラスを生成する。以下の場合に使用：(1) 新しいページのPOMを作りたい (2) 既存POMをUIの変更に追随させたい (3) 「POMを作って」「POMを更新して」「Page Objectを生成」「ページオブジェクト作成」と言われた場合
+description: >
+  Playwright Page Object Model (POM) の新規作成・既存POM更新スキル。プロジェクトのソースコードと
+  Playwright MCPブラウザスナップショットを組み合わせて、ベストプラクティスに準拠したPOMクラスを生成する。
+  以下の場合に使用：(1) 新しいページのPOMを作りたい (2) 既存POMをUIの変更に追随させたい
+  (3) 「POMを作って」「POMを更新して」「Page Objectを生成」「ページオブジェクト作成」と言われた場合。
+  TDDサイクル全体でテストを実装したい → /tdd を使うこと。
 ---
 
 # POM Generator

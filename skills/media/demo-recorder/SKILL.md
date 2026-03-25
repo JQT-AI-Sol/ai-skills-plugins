@@ -112,3 +112,16 @@ node record-demo.mjs --concat                      # 全シナリオ＋結合
 
 - 個別: `<outDir>/<scenario-name>.mp4`
 - 結合: `<outDir>/demo-all.mp4`（`--concat` 時）
+
+## 連携ツール
+
+- **peekaboo** — デスクトップアプリのスクショ（ブラウザ外のUI素材）
+  ```bash
+  peekaboo image --path screenshots/desktop-001.png
+  ```
+- **video-frames (ffmpeg)** — 録画動画からサムネイル抽出
+  ```bash
+  ffmpeg -i recording.mp4 -ss 00:00:03 -frames:v 1 thumbnail.png
+  ```
+- `/x-short-video` — 録画動画をRemotionテンプレートでアニメーション化
+- `/x-growth` — 録画動画をX投稿にアップロード（xurl media upload）
