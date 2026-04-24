@@ -60,6 +60,7 @@ allowed-tools:
 | testing | tdd-ui-review | TDDのUI/UXレビュー＆改善ループ（Gate 7） |
 | testing | tdd-doc-sync | TDDサイクル後のドキュメント同期（Gate 9） |
 | testing | pom-generator | Playwright Page Object Model 生成・更新 |
+| testing | test-quality-auditor | テスト品質監査（JSTQB FL v4.0 / ATA v3.1.2 準拠・78点満点） |
 | devops | cloudflare-deploy | Cloudflare Workers/Pages デプロイ・wrangler CLI |
 | ai-api | openai-api | OpenAI API（Chat/Vision/Whisper/DALL-E）実装ガイド |
 | ai-api | gemini-api | Google Gemini API モデル選択・実装ガイド |
